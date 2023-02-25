@@ -49,10 +49,34 @@ function playRound(playerChoice, cpuChoice) {
     } 
 }
 
-// Test function to test the rps logic
-function TEST() {
+// Helper Function for game() runs a round and returns the winner
+function rpsWinner() {
     const cpuChoice = getComputerChoice();
     const playerChoice = getPlayerChoice();
-    console.log(`player choice: ${playerChoice} cpu choice ${cpuChoice}`)
-    playRound(playerChoice, cpuChoice);
+    console.log(`Player choice: ${playerChoice}      CPU choice: ${cpuChoice}`)
+    let winner = playRound(playerChoice, cpuChoice);
+    return winner
+}
+//function to run a num of RPS rounds and tally the number of wins for each player
+//the first to reach the best of x wins the game
+function game(bestOfX) {
+    let numPlayerWins = 0
+    let numCpuWins = 0
+    while(numPlayerWins < bestOfX && numCpuWins < bestOfX) {
+        let winner = rpsWinner()
+        if(winner === playerWins){
+            ++numPlayerWins
+            console.log(`the player has won ${numPlayerWins} out of ${bestOfX} games`)
+        }else if(winner === cpuWins){
+            ++numCpuWins
+            console.log(`the CPU has won ${numCpuWins} out of ${bestOfX} games`)
+        }
+        
+    }
+    if(numCpuWins > numPlayerWins) {
+        console.log(cpuWins)
+    } else if(numPlayerWins > numCpuWins) {
+        console.log(playerWins)
+    }
+
 }
